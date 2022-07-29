@@ -1,0 +1,30 @@
+{% extends 'silsite/base.html' %}
+
+{% block content %}
+    <h1>{{ project.name }}</h1>
+    {% if  project.teacher.username == username %}
+        <a href = "edit"><button id = 'my_buttons' value = 'Edit' class = 'btn btn-primary'>Изменить</button></a>
+        <a href = "delete"><button id = 'my_buttons' value = 'Delete' class = 'btn btn-primary'>Удалить</button></a>
+        <a href="add"><button class = 'btn btn-primary'>добавить видео</button></a>
+    {% endif %}
+    <br>
+    <p><a>Научный руководитель: {{ project.teacher.last_name }} {{ project.teacher.first_name }}</a></p>
+    <p><a>Участники: {{ project.students }}</a></p>
+    <p><a href = "/media/{{ short_text_name }}" download>Скачать краткое описание</a></p>
+    <p><a href = "/media/{{ text_name }}" download>Скачать полный текст</a></p>
+    <p><a href = "/media/{{ presentation_name }}" download>Скачать презентацию</a></p>
+    <br>
+    {% for video in videos %}
+        <div class="card">
+            <div class="container">
+                <h4><a href="{{ video.video }}">Посмотреть</a></h4>
+                <p>{{ video.video_wishes }}</p>
+                {% if  project.teacher.username == username %}
+                    <form method = 'POST'>{% csrf_token %}
+                        <input class="btn btn-outline-danger" type='submit' name='{{ video.id }}' value='delete' id='my_buttons'>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
