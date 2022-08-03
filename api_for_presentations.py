@@ -12,6 +12,7 @@ def remake_data(projects, cur):
         for j in videos:
             result[i]['presentation']['videos'].append({'after_slide': j[0][0], 'YT': j[0][1]})
     return result
+
 @app.get("/projects")
 def projects():
     con = sqlite3.connect('db.sqlite3')
@@ -33,13 +34,18 @@ def project(project_id=None):
     result = remake_data(result, cur)
     cur.close()
     return result
+
 @app.get("/project")
 def project_by_name(q=None):
     con = sqlite3.connect('db.sqlite3')
     cur = con.cursor()
-    que = "SELECT id, name, presentation FROM silsite_project WHERE name={}".format(q)
+    que = "SELECT id, name, presentation FROM silsite_project"
     cur.execute(que)
     result = cur.fetchall()
     result = remake_data(result, cur)
     cur.close()
-    return result
+    sorted_result = []
+    for i in result:
+        if q in i['name'].lower():
+            sorted_result.append(i)
+    return sorted_result
