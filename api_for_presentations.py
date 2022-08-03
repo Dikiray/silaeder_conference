@@ -46,6 +46,6 @@ def project_by_name(q=None):
     cur.close()
     sorted_result = []
     for i in result:
-        if q in i['name'].lower():
+        if q.lower() in i['name'].lower():
             sorted_result.append(i)
     return sorted_result
