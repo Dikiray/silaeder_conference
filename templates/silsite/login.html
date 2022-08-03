@@ -6,10 +6,10 @@
         <form method='POST'>
             {% csrf_token %}
             <label for="id_username" class="form-label">Имя пользователя</label><br>
-            {{ form.username }}<br>
+            {{ form.username }}
             <label for="id_passowrd" class="form-label">Пароль</label><br>
-            {{ form.password }}<br>
-            <button type='submit' name='login' id='my_buttons' class="btn btn-primary">Войти</button>
+            {{ form.password }}
+            <button type='submit' name='login' id='my_buttons' class="btn btn-primary" style="margin: auto">Войти</button>
         </form>
     </div>
 {% endblock %}
