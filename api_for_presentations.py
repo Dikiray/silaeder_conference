@@ -2,10 +2,18 @@ from fastapi import FastAPI
 import sqlite3
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 def remake_data(projects, cur):
     result = projects
     for i in range(len(result)):
-        result[i] = {'id': result[i][0], 'name': result[i][1], 'autors': result[i][3] 'presentation':{'pdf': result[i][2], 'videos': []}}
+        result[i] = {'id': result[i][0], 'name': result[i][1], 'autors': result[i][3], 'presentation':{'pdf': result[i][2], 'videos': []}}
         que = "SELECT video_wishes, video FROM silsite_video WHERE id={}".format(result[i]['id'])
         cur.execute(que)
         videos = cur.fetchall()
