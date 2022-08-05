@@ -43,6 +43,7 @@
     {% endfor %}
     {% if  project.teacher.username == username %}
         <div style="display: block; margin-top:40px">
+          <div style="margin-bottom: 10px">Отправьте эту <a href="{% url 'edit_project' project.id %}">Ссылку</a> вашему подопечному, чтобы он смог редактировать этот проект<br></div>
           <a href = "edit"><button id = 'my_buttons' value = 'Edit' class = 'btn btn-primary'>Изменить проект</button></a>
           <a href = "delete"><button id = 'my_buttons' value = 'Delete' class = 'btn btn-primary'>Удалить проект</button></a>
           <a href="add"><button class = 'btn btn-primary'>Добавить видео</button></a>
