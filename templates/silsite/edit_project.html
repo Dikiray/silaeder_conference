@@ -1,12 +1,12 @@
 {% extends 'silsite/base.html' %}
 
 {% block content %}
-    <h1>{{ text_ }}</h1>
+    <h1>Изменить проект</h1>
     <form enctype="multipart/form-data" method='POST'>{% csrf_token %}
     {{ form.as_p }}
-    Short text: <input type='file' name='short_text' value={{ short_text }}><br>
-    Text: <input type='file' name='text'><br>
-    Presentation: <input type='file' name='presentation'><br>
-    <input type='submit' id='my_buttons' value='Save'>
+    <div style="margin-bottom: 10px">Краткое описание: <input type='file' name='short_text' value={{ short_text }}></div>
+    <div style="margin-bottom: 10px">Полный текс: <input type='file' name='text'></div>
+    <div style="margin-bottom: 10px">Презентация для конференции: <input type='file' name='presentation'></div>
+    <input class = 'btn btn-primary' type='submit' id='my_buttons' value='Сохранить'>
     <!-- PB{wh6t_1s_1t_d01ng_h3r3?} -->
 {% endblock %}

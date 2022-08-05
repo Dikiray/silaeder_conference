@@ -3,13 +3,15 @@
 {% block content %}
     <div class="login">
         <p>{{ text }}</p>
-        <form method='POST'>
+        <form method='POST' style="text-align: center">
             {% csrf_token %}
             <label for="id_username" class="form-label">Имя пользователя</label><br>
             {{ form.username }}
+            <br>
             <label for="id_passowrd" class="form-label">Пароль</label><br>
             {{ form.password }}
-            <button type='submit' name='login' id='my_buttons' class="btn btn-primary" style="margin: auto">Войти</button>
+            <br>
+            <button type='submit' name='login' id='my_buttons' class="btn btn-primary" style="margin-top: 10px">Войти</button>
         </form>
     </div>
 {% endblock %}
