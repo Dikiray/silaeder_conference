@@ -5,7 +5,7 @@ app = FastAPI()
 def remake_data(projects, cur):
     result = projects
     for i in range(len(result)):
-        result[i] = {'id': result[i][0], 'name': result[i][1], 'presentation':{'pdf': result[i][2], 'videos': []}}
+        result[i] = {'id': result[i][0], 'name': result[i][1], 'autors': result[i][3] 'presentation':{'pdf': result[i][2], 'videos': []}}
         que = "SELECT video_wishes, video FROM silsite_video WHERE id={}".format(result[i]['id'])
         cur.execute(que)
         videos = cur.fetchall()
@@ -17,7 +17,7 @@ def remake_data(projects, cur):
 def projects():
     con = sqlite3.connect('db.sqlite3')
     cur = con.cursor()
-    que = "SELECT id, name, presentation FROM silsite_project"
+    que = "SELECT id, name, presentation,students FROM silsite_project"
     cur.execute(que)
     result = cur.fetchall()
     result = remake_data(result, cur)
@@ -28,7 +28,7 @@ def projects():
 def project(project_id=None):
     con = sqlite3.connect('db.sqlite3')
     cur = con.cursor()
-    que = "SELECT id, name, presentation FROM silsite_project WHERE id={}".format(project_id)
+    que = "SELECT id, name, presentation, students FROM silsite_project WHERE id={}".format(project_id)
     cur.execute(que)
     result = cur.fetchall()
     result = remake_data(result, cur)
@@ -39,7 +39,7 @@ def project(project_id=None):
 def project_by_name(q=None):
     con = sqlite3.connect('db.sqlite3')
     cur = con.cursor()
-    que = "SELECT id, name, presentation FROM silsite_project"
+    que = "SELECT id, name, presentation, students FROM silsite_project"
     cur.execute(que)
     result = cur.fetchall()
     result = remake_data(result, cur)
