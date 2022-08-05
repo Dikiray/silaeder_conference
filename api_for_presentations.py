@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import sqlite3
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,7 +42,7 @@ def project(project_id=None):
     result = cur.fetchall()
     result = remake_data(result, cur)
     cur.close()
-    return result
+    return result[0]
 
 @app.get("/project")
 def project_by_name(q=None):
